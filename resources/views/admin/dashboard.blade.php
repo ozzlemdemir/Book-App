@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Satıcı Paneli</title>
     <link rel="stylesheet" href="{{ asset('css/admindashboard.css') }}">
+    <style>
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 6px;
+            vertical-align: middle;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,8 +24,8 @@
         <div class="navbar-right">
             <a href="#">Satıştaki Kitaplar</a>
             <a href="#">Satılan Kitaplar</a>
-            <a href="#">Kazanç</a>
-            <a href="{{ route('logout') }}">Çıkış Yap</a>
+            <a href="#"><img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç</a>
+            <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
         </div>
     </nav>
 
