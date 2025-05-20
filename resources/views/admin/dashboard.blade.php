@@ -19,7 +19,8 @@
     <nav class="navbar">
         <div class="navbar-left">
             <img src="{{ asset('images/seller-icon.jpg') }}" alt="Satıcı İkonu" class="seller-icon">
-            <span>Hoş geldiniz, Satıcı XX</span>
+           <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
+
         </div>
         <div class="navbar-right">
             <a href="#">Satıştaki Kitaplar</a>
