@@ -22,33 +22,13 @@ public function dashboard()
         return view('user.products', compact('products'));
     }
 
-    // Kitap detay sayfası
-    public function showProduct($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('user.product_show', compact('product'));
-    }
+public function showProduct($id)
+{
+    $product = Product::with('user')->findOrFail($id);
+    return view('product.product_show', compact('product'));
+}
 
-    // Sepete ekleme işlemi
-    public function addToCart(Request $request, $id)
-    {
-        $product = Product::findOrFail($id);
 
-        $cart = session()->get('cart', []);
 
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->image
-            ];
-        }
 
-        session()->put('cart', $cart);
-
-        return redirect()->back()->with('success', "{$product->name} sepete eklendi.");
-    }
 }
