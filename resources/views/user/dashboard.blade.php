@@ -29,7 +29,6 @@
         <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
-            <p>{{ Str::limit($product->description, 100) }}</p>
             <p><strong>{{ number_format($product->price, 2) }} ₺</strong></p>
             <div class="btn-group">
         <form action="{{ route('user.cart.add', $product->id) }}" method="POST" style="display:inline;">

@@ -4,15 +4,7 @@
     <meta charset="UTF-8">
     <title>Satıcı Paneli</title>
     <link rel="stylesheet" href="{{ asset('css/admindashboard.css') }}">
-    <style>
-        .nav-icon {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            vertical-align: middle;
-            object-fit: contain;
-        }
-    </style>
+   
 </head>
 <body>
 
@@ -40,9 +32,29 @@
                         <p>{{ $product->description }}</p>
                         <p class="product-price">{{ number_format($product->price, 2) }} ₺</p>
                         <div class="btn-group">
-                            <button class="btn btn-update" disabled>Güncelle</button>
-                            <button class="btn btn-delete" disabled>Sil</button>
+                            <button class="btn btn-update" onclick="toggleUpdateForm({{ $product->id }})">Güncelle</button>
+                            <form action="{{ route('admin.product.delete', $product->id) }}" method="POST" onsubmit="return confirm('Emin misiniz?')">
+    @csrf
+    @method('DELETE')
+    <button class="btn btn-delete">Sil</button>
+</form>
                         </div>
+                        <form id="updateForm-{{ $product->id }}" action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data" style="display:none; margin-top:10px;">
+                @csrf
+                <label>Başlık:</label>
+                <input type="text" name="name" value="{{ $product->name }}" required>
+
+                <label>Açıklama:</label>
+                <textarea name="description" rows="2" required>{{ $product->description }}</textarea>
+
+                <label>Fiyat:</label>
+                <input type="number" step="0.01" name="price" value="{{ $product->price }}" required>
+
+                <label>Yeni Görsel (opsiyonel):</label>
+                <input type="file" name="image" accept="image/*">
+
+                <button type="submit" class="btn btn-update" style="margin-top:10px;">Kaydet</button>
+            </form>
                     </div>
                 </div>
             @endforeach
@@ -81,5 +93,17 @@
             }
         });
     </script>
+    <script>
+    function toggleUpdateForm(id) {
+        const form = document.getElementById('updateForm-' + id);
+        if (form.style.display === 'block') {
+            form.style.display = 'none';
+        } else {
+            form.style.display = 'block';
+            form.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+</script>
+
 </body>
 </html>

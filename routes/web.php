@@ -19,6 +19,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.su
 // Admin Paneli
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::post('/admin/product/store', [AdminController::class, 'store'])->name('admin.product.store');
+Route::delete('/admin/product/delete/{id}', [AdminController::class, 'destroy'])->name('admin.product.delete');
+
 
 // Kullanıcı Paneli
 Route::middleware(['auth'])->group(function () {
@@ -30,8 +32,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('user.cart.add');
     Route::get('/cart', [CartController::class, 'cart'])->name('user.cart');  // Sepeti gösterir
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('user.cart.remove');
+    Route::post('/admin/product/update/{id}', [AdminController::class, 'update'])->name('admin.product.update');
+
 
     // Satın Alma İşlemleri
     Route::get('/checkout', [CartController::class, 'checkout'])->name('user.checkout');
     Route::post('/checkout/confirm', [CartController::class, 'confirmPurchase'])->name('user.purchase.confirm');
+
 });
