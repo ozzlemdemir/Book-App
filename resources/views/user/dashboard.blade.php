@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Dashboard</title>
+    <title>Alıcı Paneli</title>
     <link rel="stylesheet" href="{{ asset('css/userdashboard.css')}}">
 </head>
 <body>
-    
     <nav class="navbar">
         <div class="navbar-left">
             <img src="{{ asset('images/seller-icon.jpg') }}" alt="Kullanıcı ikonu" class="seller-icon">

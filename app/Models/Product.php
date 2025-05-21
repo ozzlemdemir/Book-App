@@ -23,7 +23,8 @@ class Product extends Model
     'description',
     'price',
     'image',
-    'is_sold'
+    'is_sold',
+    'admin_id',
 ];
 
 

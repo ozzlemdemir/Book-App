@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -29,6 +31,7 @@ class AdminController extends Controller
             'price' => $request->price,
             'image' => $imagePath,
             'is_sold' => 0,
+             'admin_id' => Auth::id(),
         ]);
 
         return redirect()->back()->with('success', 'Kitap başarıyla eklendi.');
