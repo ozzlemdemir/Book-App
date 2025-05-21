@@ -16,10 +16,21 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
 
+
 // Admin Paneli
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::post('/admin/product/store', [AdminController::class, 'store'])->name('admin.product.store');
-Route::delete('/admin/product/delete/{id}', [AdminController::class, 'destroy'])->name('admin.product.delete');
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/product/create', [AdminController::class, 'create'])->name('product.create');
+    Route::post('/product/store', [AdminController::class, 'store'])->name('product.store');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+     Route::delete('/product/{id}', [AdminController::class, 'destroy'])->name('product.delete');
+    Route::get('/product/{id}/edit', [AdminController::class, 'edit'])->name('product.edit');
+    Route::put('/product/{id}', [AdminController::class, 'update'])->name('product.update');
+     Route::get('/sold-books', [AdminController::class, 'showSoldBooks'])->name('soldBooks');
+    Route::get('/available-books', [AdminController::class, 'showAvailableBooks'])->name('availableBooks');
+});
+
 
 
 // Kullanıcı Paneli
@@ -29,14 +40,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/products/{id}', [UserController::class, 'showProduct'])->name('user.products.show');
 
     // Sepet İşlemleri
+    Route::get('/user/address', [UserController::class, 'showAddressForm'])->name('user.address');
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('user.cart.add');
-    Route::get('/cart', [CartController::class, 'cart'])->name('user.cart');  // Sepeti gösterir
+    Route::get('/cart', [CartController::class, 'cart'])->name('user.cart');
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('user.cart.remove');
-    Route::post('/admin/product/update/{id}', [AdminController::class, 'update'])->name('admin.product.update');
+   // Adres Bilgisi - Adım 1
+Route::get('/checkout/address', [UserController::class, 'showAddressForm'])->name('checkout.address');
+Route::post('/user/address', [UserController::class, 'saveAddress'])->name('user.address.save');
+Route::get('/user/checkout', [UserController::class, 'checkout'])->name('user.checkout');
+
+// Kart Bilgisi - Adım 2
+Route::get('/checkout/payment', [CartController::class, 'checkout'])->name('checkout.payment');
+Route::post('/checkout/confirm', [CartController::class, 'confirmPurchase'])->name('user.purchase.confirm');
 
 
-    // Satın Alma İşlemleri
-    Route::get('/checkout', [CartController::class, 'checkout'])->name('user.checkout');
-    Route::post('/checkout/confirm', [CartController::class, 'confirmPurchase'])->name('user.purchase.confirm');
+
+
+
 
 });

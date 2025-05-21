@@ -13,6 +13,13 @@ class LoginController extends Controller
     {
         return view('auth.login'); // login.blade.php dosyasını gösterecek
     }
+    protected function redirectTo()
+{
+    if (auth()->user()->role === 'admin') {
+        return '/admin/dashboard';
+    }
+    return '/'; // diğer rollerin yönlendirmesi
+}
 
     public function login(Request $request)
     {

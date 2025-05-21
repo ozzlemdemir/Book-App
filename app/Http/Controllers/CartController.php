@@ -73,6 +73,7 @@ class CartController extends Controller
 
         return view('user.checkout', compact('cartItems'));
     }
+    
 
     // Satın alma işlemi onayı
     public function confirmPurchase(Request $request)
@@ -84,6 +85,16 @@ class CartController extends Controller
         ]);
 
         $userId = Auth::id();
+         $cartItems = Cart::where('user_id', $userId)->get();
+
+    // Ürünleri satıldı olarak işaretle
+    foreach ($cartItems as $item) {
+        $product = Product::find($item->product_id);
+        if ($product) {
+            $product->is_sold = 1;
+            $product->save();
+        }
+    }
 
         // Ödeme işlemi (simülasyon)
 
@@ -92,4 +103,5 @@ class CartController extends Controller
 
         return redirect()->route('user.dashboard')->with('message', 'Satın alma işlemi başarıyla tamamlandı. Teşekkürler!');
     }
+
 }

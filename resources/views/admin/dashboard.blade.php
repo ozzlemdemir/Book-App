@@ -15,8 +15,8 @@
 
         </div>
         <div class="navbar-right">
-            <a href="#">Satıştaki Kitaplar</a>
-            <a href="#">Satılan Kitaplar</a>
+            <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
+        <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
             <a href="#"><img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç</a>
             <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
         </div>
@@ -32,29 +32,14 @@
                         <p>{{ $product->description }}</p>
                         <p class="product-price">{{ number_format($product->price, 2) }} ₺</p>
                         <div class="btn-group">
-                            <button class="btn btn-update" onclick="toggleUpdateForm({{ $product->id }})">Güncelle</button>
+                            <a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-update">Güncelle</a>
                             <form action="{{ route('admin.product.delete', $product->id) }}" method="POST" onsubmit="return confirm('Emin misiniz?')">
     @csrf
     @method('DELETE')
     <button class="btn btn-delete">Sil</button>
 </form>
                         </div>
-                        <form id="updateForm-{{ $product->id }}" action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data" style="display:none; margin-top:10px;">
-                @csrf
-                <label>Başlık:</label>
-                <input type="text" name="name" value="{{ $product->name }}" required>
-
-                <label>Açıklama:</label>
-                <textarea name="description" rows="2" required>{{ $product->description }}</textarea>
-
-                <label>Fiyat:</label>
-                <input type="number" step="0.01" name="price" value="{{ $product->price }}" required>
-
-                <label>Yeni Görsel (opsiyonel):</label>
-                <input type="file" name="image" accept="image/*">
-
-                <button type="submit" class="btn btn-update" style="margin-top:10px;">Kaydet</button>
-            </form>
+                        
                     </div>
                 </div>
             @endforeach

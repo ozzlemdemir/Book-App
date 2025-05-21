@@ -52,22 +52,42 @@ public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);
 
-    $imagePath = $product->image; // Mevcut görsel
+    $product->name = $request->input('name');
+    $product->description = $request->input('description');
+    $product->price = $request->input('price');
 
+    // Yeni görsel yüklendiyse işle
     if ($request->hasFile('image')) {
-        $filename = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $filename);
-        $imagePath = 'images/' . $filename;
+        $image = $request->file('image');
+        $imagePath = $image->store('images', 'public'); // public/images klasörüne yükler
+        $product->image = 'storage/' . $imagePath;
     }
 
-    $product->update([
-        'name' => $request->name,
-        'description' => $request->description,
-        'price' => $request->price,
-        'image' => $imagePath,
-    ]);
+    $product->save();
 
-    return redirect()->back()->with('success', 'Kitap başarıyla güncellendi.');
+    return redirect()->route('admin.dashboard')->with('success', 'Kitap başarıyla güncellendi.');
+}
+public function edit($id)
+{
+    $product = Product::findOrFail($id);
+    return view('admin.edit', compact('product'));
+}
+// Satıştaki kitapları göster (is_sold = 0)
+    public function showAvailableBooks()
+    {
+        $products = Product::where('is_sold', 0)->get();
+        return view('admin.available_books', compact('products'));
+    }
+
+    // Satılan kitapları göster (is_sold = 1)
+    public function showSoldBooks()
+    {
+        $products = Product::where('is_sold', 1)->get();
+        return view('admin.sold_books', compact('products'));
+    }
+public function create()
+{
+    return view('admin.products.create'); // Blade dosyanın yoluna göre ayarla
 }
 
 
