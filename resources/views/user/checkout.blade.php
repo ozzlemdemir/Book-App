@@ -13,12 +13,12 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <img src="{{ asset('images/seller-icon.png') }}" alt="Kullanıcı ikonu" class="seller-icon">
+        <img src="{{ asset('images/seller-icon.jpg') }}" alt="Kullanıcı ikonu" class="seller-icon">
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
-        <a href="{{ route('user.cart') }}"><img src="{{ asset('images/shopping-cart.png') }}" class="nav-icon">Sepet</a>
-        <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.png') }}" class="nav-icon">Çıkış Yap</a>
+        <a href="{{ route('user.cart') }}"><img src="{{ asset('images/shopping-cart.jpg') }}" class="nav-icon">Sepet</a>
+        <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
     </div>
 </nav>
 
