@@ -1,9 +1,9 @@
 /* Genel ayarlar */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    font-family: Arial, sans-serif;
     background-color: #F5ECD5;
-    margin: 0;
-    padding: 0;
+    color:  #626F47;
 }
 
 /* Navbar */
@@ -11,20 +11,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #626F47;
+    background-color: #90a369;
+    padding: 10px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
     color: white;
-    padding: 15px 30px;
 }
 
-.navbar a {
-    color: #F5ECD5;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
+.navbar-left {
+    display: flex;
+    align-items: center;
 }
 
 .navbar .seller-icon {
@@ -32,17 +30,40 @@ body {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-    vertical-align: middle;
+    object-fit: cover;
 }
 
 .navbar .navbar-left span {
     font-size: 16px;
+    color: black;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: white;
+    cursor: pointer;
 }
 
 .navbar .nav-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    object-fit: contain;
     vertical-align: middle;
 }
 
@@ -92,5 +113,5 @@ body {
 
 .book-card p {
     font-size: 14px;
-    color: #333;
+    color: #333;
 }
