@@ -17,10 +17,11 @@
         <div class="navbar-right">
             <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
-            <a href="#"><img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç</a>
+           <a href="{{ route('admin.earnings') }}">Kazanç</a>
             <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
         </div>
     </nav>
+    <h2 class="page-title">Tüm Kitaplar</h2>
 
     <div class="content">
         <div class="product-list" id="productList">

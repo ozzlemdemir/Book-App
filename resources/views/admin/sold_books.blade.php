@@ -14,9 +14,12 @@
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
-        <a href="{{ route('admin.dashboard') }}">Satıştaki Kitaplar</a>
+        <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
-        <a href="#"><img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç</a>
+        <a href="/admin/earnings">
+    <img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç
+</a>
+
         <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
     </div>
 </nav>

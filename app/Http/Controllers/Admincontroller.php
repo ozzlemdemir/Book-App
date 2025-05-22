@@ -89,6 +89,12 @@ public function create()
 {
     return view('admin.products.create'); // Blade dosyanın yoluna göre ayarla
 }
-
+ 
+public function earnings()
+{
+    $soldProducts = Product::where('is_sold', 1)->get();
+    $totalEarnings = $soldProducts->sum('price');
+    return view('admin.earnings', compact('soldProducts', 'totalEarnings'));
+}
 
 }

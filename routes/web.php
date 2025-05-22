@@ -29,10 +29,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/product/{id}', [AdminController::class, 'update'])->name('product.update');
      Route::get('/sold-books', [AdminController::class, 'showSoldBooks'])->name('soldBooks');
     Route::get('/available-books', [AdminController::class, 'showAvailableBooks'])->name('availableBooks');
+    Route::get('/earnings', [AdminController::class, 'earnings'])->name('earnings');
+
+    
 });
-
-
-
 // Kullanıcı Paneli
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
