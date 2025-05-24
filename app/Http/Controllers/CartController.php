@@ -6,6 +6,9 @@ use App\Models\Product;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Models\Order;
+use App\Models\OrderItems;
 
 class CartController extends Controller
 {
@@ -73,35 +76,61 @@ class CartController extends Controller
 
         return view('user.checkout', compact('cartItems'));
     }
-    
 
     // Satın alma işlemi onayı
-    public function confirmPurchase(Request $request)
-    {
-        $request->validate([
-            'card_number' => 'required|digits:16',
-            'expiry_date' => 'required|date_format:m/y',
-            'cvv' => 'required|digits:3',
+public function confirmPurchase(Request $request)
+{
+    $request->validate([
+        'card_number' => 'required|digits:16',
+        'expiry_date' => ['required', 'regex:/^(0[1-9]|1[0-2])\/\d{2}$/'],
+        'cvv' => 'required|digits:3',
+    ]);
+
+    $user = Auth::user();
+    $cartItems = $user->cartItems()->with('product')->get();
+
+    if ($cartItems->isEmpty()) {
+        return redirect()->route('user.cart')->with('message', 'Sepetiniz boş.');
+    }
+
+    DB::beginTransaction();
+
+    try {
+        // Toplam fiyat hesapla
+        $totalPrice = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        // Siparişi kaydet
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_price' => $totalPrice,
         ]);
 
-        $userId = Auth::id();
-         $cartItems = Cart::where('user_id', $userId)->get();
+        // Sipariş ürünlerini kaydet
+        foreach ($cartItems as $item) {
+            OrderItems::create([
+                'order_id' => $order->id,
+                'product_id' => $item->product->id,
+                'quantity' => $item->quantity,
+                'price' => $item->product->price,
+            ]);
 
-    // Ürünleri satıldı olarak işaretle
-    foreach ($cartItems as $item) {
-        $product = Product::find($item->product_id);
-        if ($product) {
-            $product->is_sold = 1;
-            $product->save();
+            // Ürünü satıldı olarak işaretle
+            $item->product->is_sold = 1;
+            $item->product->save();
         }
+
+        // Sepeti temizle
+        $user->cartItems()->delete();
+
+        DB::commit();
+
+        return redirect()->route('user.orders')->with('success', 'Siparişiniz alındı, teşekkür ederiz!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect()->back()->with('message', 'Ödeme sırasında bir hata oluştu: ' . $e->getMessage());
     }
-
-        // Ödeme işlemi (simülasyon)
-
-        // Satın alma sonrası sepeti temizle
-        Cart::where('user_id', $userId)->delete();
-
-        return redirect()->route('user.dashboard')->with('message', 'Satın alma işlemi başarıyla tamamlandı. Teşekkürler!');
-    }
+}
 
 }

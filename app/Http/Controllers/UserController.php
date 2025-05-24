@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
 
@@ -45,11 +46,16 @@ public function saveAddress(Request $request)
 
     return redirect()->route('user.checkout')->with('message', 'Adresiniz kaydedildi.');
 }
-public function checkout()
+
+public function myOrders()
 {
-    $user = auth()->user(); // Giriş yapan kullanıcı
-    return view('user.checkout', compact('user'));
+    $user = Auth::user();
+
+    $orders = $user->orders()->with(['items.product'])->latest()->get();
+
+    return view('user.orders', compact('orders'));
 }
+
 
 
 

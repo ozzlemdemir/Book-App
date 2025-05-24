@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Siparişlerim</title>
+    <link rel="stylesheet" href="{{ asset('css/orders.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="{{ asset('images/seller-icon.jpg') }}" alt="Kullanıcı ikonu" class="seller-icon">
+            <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
+        </div>
+        <div class="navbar-right">
+            <a href="{{ route('user.dashboard') }}"><img src="{{ asset('images/main-page.jpg') }}" class="nav-icon">Anasayfa</a>
+            <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
+        </div>
+    </nav>
+
+    <h2>Siparişlerim</h2>
+
+    @forelse ($orders as $order)
+        <div class="order-card">
+            <p><strong>Sipariş No:</strong> {{ $order->id }}</p>
+            <p><strong>Tarih:</strong> {{ $order->created_at->format('d.m.Y H:i') }}</p>
+            <p><strong>Toplam Tutar:</strong> {{ number_format($order->total_price, 2) }} ₺</p>
+            @php
+                $state = $order->items->first()->state ?? 1;
+                $stateText = match($state) {
+                    1 => 'Sipariş Alındı',
+                    2 => 'Sipariş Hazırlanıyor',
+                    3 => 'Kargoya Verildi',
+                    default => 'Bilinmeyen Durum'
+                };
+            @endphp
+
+            <p><strong>Sipariş Durumu:</strong> {{ $stateText }}</p>
+
+            <h4>Ürünler:</h4>
+            <ul>
+                @foreach ($order->items as $item)
+                    <li>
+                        {{ $item->product->name }} -
+                        {{ $item->quantity }} adet -
+                        {{ number_format($item->price, 2) }} ₺
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @empty
+        <p>Henüz bir siparişiniz yok.</p>
+    @endforelse
+</body>
+</html>
