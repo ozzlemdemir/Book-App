@@ -10,7 +10,7 @@
 
     <nav class="navbar">
         <div class="navbar-left">
-            <img src="{{ asset('images/seller-icon.jpg') }}" alt="Satıcı İkonu" class="seller-icon">
+            <img src="{{ asset('images/seller.png') }}" alt="Satıcı İkonu" class="seller-icon">
            <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
 
         </div>
@@ -19,9 +19,9 @@
             <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
             <a href="{{ route('admin.orders') }}">Siparişler</a>
             <a href="/admin/earnings">
-    <img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç
+    <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
 </a>
-            <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.jpg') }}" class="nav-icon">Çıkış Yap</a>
+            <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap</a>
         </div>
     </nav>
     <h2 class="page-title">Tüm Kitaplar</h2>

@@ -9,14 +9,14 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <img src="{{ asset('images/seller-icon.jpg') }}" alt="Satıcı İkonu" class="seller-icon">
+        <img src="{{ asset('images/seller.png') }}" alt="Satıcı İkonu" class="seller-icon">
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
         <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
         <a href="{{ route('logout') }}">
-            <img src="{{ asset('images/user-logout.jpg') }}" alt="Çıkış Yap" class="nav-icon">Çıkış Yap
+            <img src="{{ asset('images/logout.png') }}" alt="Çıkış Yap" class="nav-icon">Çıkış Yap
         </a>
     </div>
 </nav>
