@@ -9,7 +9,9 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <img src="{{ asset('images/seller.png') }}" alt="Satıcı İkonu" class="seller-icon">
+        <a href="{{ route('admin.profile') }}">
+    <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon"> 
+</a>
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">

@@ -14,7 +14,9 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <img src="{{ asset('images/user.png') }}" alt="Kullanıcı ikonu" class="seller-icon">
+             <a href="{{ route('user.profile') }}">
+    <img src="{{ asset('images/user.png') }}" class="nav-icon" alt="Profil İkonu">
+</a>
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
