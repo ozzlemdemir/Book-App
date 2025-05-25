@@ -12,42 +12,61 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #626F47; /* koyu yeşil */
-    padding: 10px 20px;
-    color: #F5ECD5; /* açık krem */
+    background-color: #90a369;
+    padding: 10px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    color: white;
 }
 
-.navbar-left, .navbar-right {
+.navbar-left {
     display: flex;
     align-items: center;
-    gap: 15px;
 }
 
-.seller-icon, .nav-icon {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
+.navbar .seller-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
 }
 
-.navbar-left span {
-    font-weight: 600;
-    margin-left: 10px;
+.navbar .navbar-left span {
+    font-size: 16px;
+    color: black;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .navbar a {
-    color: #F5ECD5;
+    color: black;
     text-decoration: none;
     font-weight: 500;
     display: flex;
     align-items: center;
-    gap: 6px;
     transition: color 0.3s ease;
 }
 
 .navbar a:hover {
-    color: #A4B465; /* açık yeşil */
+    color: white;
+    cursor: pointer;
 }
 
+.navbar .nav-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    object-fit: contain;
+    vertical-align: middle;
+}
 .container {
     max-width: 600px;
     margin: 40px auto;

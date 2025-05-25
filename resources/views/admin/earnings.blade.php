@@ -16,6 +16,7 @@
     </div>
     <div class="navbar-right">
         <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
+        <a href="{{ route('admin.dashboard') }}">Satıştaki Kitaplar</a>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
         <a href="{{ route('logout') }}">
             <img src="{{ asset('images/logout.png') }}" alt="Çıkış Yap" class="nav-icon">Çıkış Yap

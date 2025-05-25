@@ -106,38 +106,46 @@ h1 {
     font-size: 14px;
 }
 
+/* Genel buton stilleri */
+.btn {
+    padding: 8px 16px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: white;
+}
+
+/* Hazırlanıyor butonu (örnek: mavi ton) */
+.btn-group form:first-child .btn {
+    background-color: #4A90E2; /* Mavi */
+}
+
+.btn-group form:first-child .btn:hover {
+    background-color: #357ABD;
+    transform: scale(1.05);
+}
+
+/* Kargoya Verildi butonu (örnek: yeşil ton) */
+.btn-group form:last-child .btn {
+    background-color: #7ED957; /* Yeşil */
+}
+
+.btn-group form:last-child .btn:hover {
+    background-color: #5CBF3A;
+    transform: scale(1.05);
+}
+
+/* Buton grubu düzeni */
 .btn-group {
-    margin-top: 15px;
     display: flex;
     gap: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-.btn-state {
-    padding: 8px 14px;
-    font-size: 14px;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    transition: opacity 0.3s ease;
-}
-
-.btn-state:hover {
-    opacity: 0.8;
-}
-
-.btn-received {
-    background-color: #a4b465;
-}
-
-.btn-preparing {
-    background-color: #f0bb78;
-}
-
-.btn-shipped {
-    background-color: #626f47;
-}
 
 hr {
     border: none;

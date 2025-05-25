@@ -18,6 +18,9 @@
     <div class="navbar-right">
         <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
+        <a href="/admin/earnings">
+    <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
+</a>
      <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap</a>
     </div>
 </nav>
