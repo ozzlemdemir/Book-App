@@ -16,7 +16,12 @@
     <div class="navbar-right">
         <a href="{{ route('user.orders') }}"><img src="{{ asset('images/orders.png') }}" class="nav-icon" alt="Siparişlerim İkonu">Siparişlerim</a>
         <a href="{{ route('user.cart') }}"><img src="{{ asset('images/cart.png') }}" class="nav-icon" alt="Sepet İkonu">Sepet</a>
-        <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon" alt="Çıkış Yap İkonu">Çıkış Yap</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                <img src="{{ asset('images/logout.png') }}" class="nav-icon" alt="Çıkış Yap İkonu">Çıkış Yap
+            </button>
+        </form>
     </div>
 </nav>
 

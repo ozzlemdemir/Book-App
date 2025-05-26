@@ -10,9 +10,17 @@ use App\Models\User;
 class LoginController extends Controller
 {
     public function showLoginForm()
-    {
-        return view('auth.login'); // login.blade.php dosyasını gösterecek
+{
+    if (Auth::check()) {
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.dashboard');
+        }
     }
+    return view('auth.login');
+}
+
     protected function redirectTo()
 {
     if (auth()->user()->role === 'admin') {
@@ -34,7 +42,9 @@ class LoginController extends Controller
 
         // Kullanıcı varsa ve şifre doğruysa
         if ($user && Hash::check($request->password, $user->password)) {
-            Auth::login($user); // Oturum başlat
+           $remember = $request->has('remember');
+        Auth::login($user, $remember);
+
 
             // Rol kontrolü
             if ($user->role === 'admin') {

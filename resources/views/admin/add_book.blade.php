@@ -10,15 +10,20 @@
 <nav class="navbar">
     <div class="navbar-left">
         <a href="{{ route('admin.profile') }}">
-            <img src="{{ asset('images/seller-icon.png') }}" alt="Admin" class="nav-icon">
+            <img src="{{ asset('images/user.png') }}" alt="Admin" class="nav-icon">
         </a>
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
-        <a href="{{ route('admin.dashboard') }}">Satıştaki Kitaplar</a>
-        <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
+        <a href="{{ route('admin.availableBooks') }}">
+        <img src="{{ asset('images/books.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satıştaki Kitaplar</a>
+        <span class="divider">|</span>
+        <a href="{{ route('admin.soldBooks') }}">
+        <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satılan Kitaplar</a>
         <a href="{{ asset('images/coins.png') }}"><img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç</a>
-        <a href="{{ route('logout') }}"><img src="{{ asset('images/user-logout.png') }}" class="nav-icon">Çıkış Yap</a>
+        <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap</a>
     </div>
 </nav>
 

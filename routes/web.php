@@ -7,14 +7,19 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminOrderController;
 
-//  Giriş ve Kayıt İşlemleri
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/login', [LoginController::class, 'showLoginForm']);
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// TÜM web işlemlerini 'web' middleware grubuna alıyoruz
+Route::middleware('web')->group(function () {
+    // Giriş ve Kayıt İşlemleri
+    Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::get('/login', [LoginController::class, 'showLoginForm']);
+    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+    
+    // logout işlemleri sadece POST olmalı
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+});
 
 
 //  Admin Paneli (İsteğe bağlı olarak middleware: admin ekleyebilirsin)
@@ -30,6 +35,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/earnings', [AdminController::class, 'earnings'])->name('earnings');
     
 });
+Route::get('/admin/books/add', [AdminController::class, 'addBooks'])->name('admin.add_books');
+
 Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders');
 Route::post('/admin/orders/update-state/{orderItem}/{state}', [AdminOrderController::class, 'updateOrderState'])
     ->name('admin.updateOrderState');

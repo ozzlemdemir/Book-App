@@ -61,6 +61,10 @@ public function updatePassword(Request $request)
 
         return redirect()->back()->with('success', 'Kitap başarıyla eklendi.');
     }
+    public function showAddBookForm()
+{
+    return view('admin.add_book'); // Blade dosyanın yolu: resources/views/admin/add_book.blade.php
+}
     public function destroy($id)
 {
     $product = Product::findOrFail($id);
@@ -120,6 +124,10 @@ public function earnings()
     $soldProducts = Product::where('is_sold', 1)->get();
     $totalEarnings = $soldProducts->sum('price');
     return view('admin.earnings', compact('soldProducts', 'totalEarnings'));
+}
+public function addBooks()
+{
+    return view('admin.add_book'); // varsa bu view dosyasına yönlendir
 }
 
 }
