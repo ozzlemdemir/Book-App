@@ -7,26 +7,39 @@
    
 </head>
 <body>
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="{{ route('admin.profile') }}">
+            <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon seller-icon"> 
+        </a>
+        <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
+    </div>
 
-    <nav class="navbar">
-        <div class="navbar-left">
-            <a href="{{ route('admin.profile') }}">
-    <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon"> 
-</a>
+    <div class="navbar-right">
+    <div class="link-group close-group">
+        
+        <a href="{{ route('admin.availableBooks') }}">
+        <img src="{{ asset('images/books.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satıştaki Kitaplar</a>
+        <span class="divider">|</span>
+        <a href="{{ route('admin.soldBooks') }}">
+        <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satılan Kitaplar</a>
+    </div>
 
-           <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
-
-        </div>
-        <div class="navbar-right">
-            <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
-            <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
-            <a href="{{ route('admin.orders') }}">Siparişler</a>
-            <a href="/admin/earnings">
-    <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
-</a>
-            <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap</a>
-        </div>
-    </nav>
+    <div class="link-group normal-group">
+        <a href="{{ route('admin.orders') }}">
+        <img src="{{ asset('images/orders.png') }}" alt="Orders Icon" class="nav-icon orders-icon">    
+        Siparişler</a>
+        <a href="/admin/earnings">
+            <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
+        </a>
+        <a href="{{ route('logout') }}">
+            <img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap
+        </a>
+    </div>
+</div>
+</nav>
     <h2 class="page-title">Tüm Kitaplar</h2>
 
     <div class="content">

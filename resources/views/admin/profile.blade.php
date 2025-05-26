@@ -13,10 +13,19 @@
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
     <div class="navbar-right">
-        <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
-        <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
-        <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
-        <a href="{{ route('admin.orders') }}">Siparişler</a>
+        <a href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('images/add-book.png') }}" class="nav-icon">Tüm Kitaplar
+        </a>
+        <a href="{{ route('admin.availableBooks') }}">
+        <img src="{{ asset('images/books.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satıştaki Kitaplar</a>
+        <span class="divider">|</span>
+        <a href="{{ route('admin.soldBooks') }}">
+        <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satılan Kitaplar</a>
+        <a href="{{ route('admin.orders') }}">
+        <img src="{{ asset('images/orders.png') }}" alt="Orders Icon" class="nav-icon orders-icon">    
+        Siparişler</a>
        <a href="/admin/earnings">
             <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
         </a>

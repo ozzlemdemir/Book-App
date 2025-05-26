@@ -23,7 +23,6 @@
 
     @forelse ($orders as $order)
         <div class="order-card">
-            <p><strong>Sipariş No:</strong> {{ $order->id }}</p>
             <p><strong>Tarih:</strong> {{ $order->created_at->format('d.m.Y H:i') }}</p>
             <p><strong>Toplam Tutar:</strong> {{ number_format($order->total_price, 2) }} ₺</p>
             @php

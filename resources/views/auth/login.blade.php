@@ -32,6 +32,6 @@
     <button type="submit">Giriş Yap</button>
 </form>
 
-    <p>Üye değil misin? <a href="{{ route('register') }}">Kaydol</a></p>
+    <p>Üye değil misin? <b><a href="{{ route('register') }}">Kaydol</b></a></p>
 </body>
 </html>

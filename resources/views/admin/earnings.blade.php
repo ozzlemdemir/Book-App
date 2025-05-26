@@ -10,18 +10,34 @@
 <nav class="navbar">
     <div class="navbar-left">
         <a href="{{ route('admin.profile') }}">
-    <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon"> 
-</a>
+            <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon seller-icon"> 
+        </a>
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
+
     <div class="navbar-right">
-        <a href="{{ route('admin.dashboard') }}">Tüm Kitaplar</a>
-        <a href="{{ route('admin.dashboard') }}">Satıştaki Kitaplar</a>
+    <div class="link-group close-group">
+         <a href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('images/add-book.png') }}" class="nav-icon">Tüm Kitaplar
+        </a>
+        <span class="divider">|</span>
+        <img src="{{ asset('images/books.png') }}" alt="Book Icon" class="nav-icon book-icon">
+        <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
+        <span class="divider">|</span>
         <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
+    </div>
+
+    <div class="link-group normal-group">
+        <img src="{{ asset('images/orders.png') }}" alt="Orders Icon" class="nav-icon orders-icon">
+        <a href="{{ route('admin.orders') }}">Siparişler</a>
+        <a href="/admin/earnings">
+            <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
+        </a>
         <a href="{{ route('logout') }}">
-            <img src="{{ asset('images/logout.png') }}" alt="Çıkış Yap" class="nav-icon">Çıkış Yap
+            <img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap
         </a>
     </div>
+</div>
 </nav>
 
 <div class="content">
