@@ -23,7 +23,15 @@
         <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
         Satılan Kitaplar</a>
         <a href="{{ asset('images/coins.png') }}"><img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç</a>
-        <a href="{{ route('logout') }}"><img src="{{ asset('images/logout.png') }}" class="nav-icon">Çıkış Yap</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
+<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+   style="font-size: 16px; display: flex; align-items: center; text-decoration: none; cursor: pointer;">
+    <img src="{{ asset('images/logout.png') }}" class="nav-icon" alt="Çıkış Yap İkonu">
+    <span style="margin-left: 5px;">Çıkış Yap</span>
+</a>
     </div>
 </nav>
 
