@@ -23,7 +23,11 @@ class Product extends Model
     'description',
     'price',
     'image',
-    'is_sold'
+    'is_sold',
+    'author',
+    'type',
+    'publication_year',
+    'page_count',
 ];
 
 

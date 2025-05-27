@@ -16,10 +16,14 @@
             <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
         </div>
         <div class="navbar-right">
-            <a href="{{ route('admin.dashboard') }}">Satıştaki Kitaplar</a>
-            <a href="#">Satılan Kitaplar</a>
-            <a href="#"><img src="{{ asset('images/coins.jpg') }}" class="nav-icon">Kazanç</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <img src="{{ asset('images/books.png') }}" alt="Book Icon" class="nav-icon book-icon">
+            <a href="{{ route('admin.availableBooks') }}">Satıştaki Kitaplar</a>
+            <span class="divider">|</span>
+            <a href="{{ route('admin.soldBooks') }}">
+        <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
+        Satılan Kitaplar</a>
+            <a href="{{ route('admin.earnings') }}"><img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>
 
@@ -43,17 +47,30 @@
             <label>Açıklama:</label>
             <textarea name="description" rows="3" required>{{ $product->description }}</textarea>
 
-            <label>Fiyat:</label>
-            <input type="number" step="0.01" name="price" value="{{ $product->price }}" required>
-
             <label>Görsel:</label>
             <img src="{{ asset($product->image) }}" width="100" alt="Kitap Görseli"><br>
             <input type="file" name="image" accept="image/*">
 
+            <label>Yazar:</label>
+            <input type="text" name="author" value="{{ $product->author }}" required>
+
+            <label>Tür:</label>
+            <input type="text" name="type" value="{{ $product->type }}" required>
+
+            <label>Yayın Yılı:</label>
+            <input type="number" name="publication_year" value="{{ $product->publication_year }}" required>
+
+            <label>Sayfa Sayısı:</label>
+            <input type="number" name="page_count" value="{{ $product->page_count }}" required>
+
+            <label>Fiyat:</label>
+            <input type="number" step="0.01" name="price" value="{{ $product->price }}" required>
+            
             <div style="margin-top: 15px;">
                 <button type="submit" class="btn btn-update">Kaydet</button>
                 <a href="{{ route('admin.dashboard') }}" class="btn btn-delete" style="margin-left: 10px;">Vazgeç</a>
             </div>
+
         </form>
     </div>
 
