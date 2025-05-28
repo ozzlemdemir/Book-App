@@ -7,11 +7,11 @@
 </head>
 <body>
 
-<!-- Navbar -->
+
 <nav class="navbar">
     <div class="navbar-left">
         <a href="{{ route('admin.profile') }}">
-            <img src="{{ asset('images/seller.png') }}" alt="Admin" class="nav-icon"> 
+            <img src="{{ asset('images/seller-icon.png') }}" alt="Admin" class="nav-icon"> 
         </a>
         <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
     </div>
@@ -19,30 +19,22 @@
         <a href="{{ route('admin.dashboard') }}">
             <img src="{{ asset('images/add-book.png') }}" class="nav-icon">Tüm Kitaplar
         </a>
-        <span class="divider">|</span>
-        <a href="{{ route('admin.soldBooks') }}">
-        <img src="{{ asset('images/sold-book.png') }}" alt="Book Icon" class="nav-icon book-icon">    
-        Satılan Kitaplar</a>
-        <a href="{{ route('admin.orders') }}">
-        <img src="{{ asset('images/orders.png') }}" alt="Orders Icon" class="nav-icon orders-icon">    
-        Siparişler</a>
+        <a href="{{ route('admin.soldBooks') }}">Satılan Kitaplar</a>
         <a href="/admin/earnings">
-            
             <img src="{{ asset('images/coins.png') }}" class="nav-icon">Kazanç
         </a>
-       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>
 
 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
    style="font-size: 16px; display: flex; align-items: center; text-decoration: none; cursor: pointer;">
-    <img src="{{ asset('images/logout.png') }}" class="nav-icon" alt="Çıkış Yap İkonu">
+    <img src="{{ asset('images/user-logout.png') }}" class="nav-icon" alt="Çıkış Yap İkonu">
     <span style="margin-left: 5px;">Çıkış Yap</span>
 </a>
     </div>
 </nav>
 
-<!-- Content -->
 <div class="content">
     <div class="book-list">
         @if($products->where('is_sold', 0)->count())
@@ -65,7 +57,11 @@
                 </div>
             @endforeach
         @else
-            <p>Satışta kitap bulunmamaktadır.</p>
+                <div style="background-color: #fff3cd; border-radius: 10px; padding: 15px 20px; display: flex; align-items: center; font-family: Arial, sans-serif; justify-content:center; width:100%;">
+        <span style="font-size: 24px; margin-right: 10px;">🔔</span>
+        <span style="color: #856404;">Satışta hiç kitap bulunmamaktadır.</span>
+    </div>
+
         @endif
     </div>
 </div>

@@ -31,33 +31,25 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Doğrulama
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+          $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
 
-        // Kullanıcıyı veritabanından çek
-        $user = User::where('email', $request->email)->first();
+    ]);
 
-        // Kullanıcı varsa ve şifre doğruysa
-        if ($user && Hash::check($request->password, $user->password)) {
-           $remember = $request->has('remember');
-        Auth::login($user, $remember);
+    $credentials = $request->only('email', 'password');
+    $remember = $request->has('remember');
+    
 
-
-            // Rol kontrolü
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard'); // admin paneli
-            } elseif ($user->role === 'user') {
-                return redirect()->route('user.dashboard'); // kullanıcı paneli
-            } else {
-                return redirect()->route('home'); // varsayılan sayfa
-            }
+    if (Auth::attempt($credentials, $remember)) {
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('user.dashboard');
         }
+    }
 
-        // Hatalı giriş
-        return back()->withErrors(['email' => 'Geçersiz bilgiler'])->withInput();
+    return back()->withErrors(['email' => 'Geçersiz bilgiler'])->withInput();
     }
 
     public function logout()

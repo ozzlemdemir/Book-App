@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-    <title>Giriş Yap</title>
-     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <meta charset="UTF-8">
+    <title>Giriş Sayfası</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
-    <h2>Giriş Ekranı</h2>
+    <img src="{{ asset('images/login-logo.png') }}" class="logo" alt="Logo">
 
     @if ($errors->any())
         <div style="color:red;">
@@ -17,7 +18,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('login.submit') }}">
+    <form method="POST" action="{{ route('login.submit')}}">
     @csrf
     <label for="email">Email:</label>
     <input type="email" name="email" required><br>
@@ -32,6 +33,6 @@
     <button type="submit">Giriş Yap</button>
 </form>
 
-    <p>Üye değil misin? <b><a href="{{ route('register') }}">Kaydol</b></a></p>
+    <p>Üye değil misin? <a href="{{ route('register') }}"><b>Kaydol</b></a></p>
 </body>
 </html>

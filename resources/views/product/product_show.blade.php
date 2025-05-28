@@ -13,8 +13,11 @@
         </div>
         <div class="navbar-right">
              @guest
-        <!-- Kullanıcı giriş yapmamışsa göster -->
-        <a href="{{ route('login') }}">Giriş Yap</a>
+       <!-- Kullanıcı giriş yapmamışsa göster -->
+        <div class="login-link">
+    <img src="{{ asset('images/giris.png') }}" class="nav-icon" alt="Giriş Yap İkonu">
+    <a href="{{ route('login') }}">Giriş Yap</a>
+</div>
     @endguest
             @auth
             <a href="{{ route('user.cart') }}"><img src="{{ asset('images/cart.png') }}" class="nav-icon">Sepet</a>

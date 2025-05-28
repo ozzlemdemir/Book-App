@@ -69,6 +69,11 @@ body {
     vertical-align: middle;
 }
 
+.logo {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+}
 
 h1,h2{
     font-size: 28px;
@@ -435,3 +440,13 @@ h1,h2{
             color: #155724;
             z-index: 100;
         }
+        .login-link {
+    display: flex;
+    align-items: center;
+    gap: 6px; 
+}
+
+.login-link .nav-icon {
+    width: 20px;
+    height: 20px;
+}
