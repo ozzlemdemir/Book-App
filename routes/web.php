@@ -7,11 +7,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminOrderController;
 
+  
 // TÜM web işlemlerini 'web' middleware grubuna alıyoruz
 Route::middleware('web')->group(function () {
-    // Giriş ve Kayıt İşlemleri
-    Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::get('/login', [LoginController::class, 'showLoginForm']);
+     // Giriş ve Kayıt İşlemleri
+    Route::get('/', [UserController::class, 'dashboard'])->name('user.dashboard');
+    
+    // SADECE BU VAR OLMALI
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+    //Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+   
     Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
     
     // logout işlemleri sadece POST olmalı
@@ -50,12 +56,14 @@ Route::post('/admin/update-password', [AdminController::class, 'updatePassword']
 
 
 //  Kullanıcı Paneli
-Route::middleware(['auth'])->group(function () {
-
-    // Kullanıcı Dashboard ve Ürünler
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/products', [UserController::class, 'products'])->name('user.products');
     Route::get('/product/{id}', [UserController::class, 'showProduct'])->name('user.products.show');
+
+    Route::middleware(['auth'])->group(function () {
+
+    // Kullanıcı Dashboard ve Ürünler
+   // Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    
 
     // Sepet
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('user.cart.add');

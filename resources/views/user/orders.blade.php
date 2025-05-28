@@ -39,12 +39,14 @@
                     1 => 'Sipariş Alındı',
                     2 => 'Sipariş Hazırlanıyor',
                     3 => 'Kargoya Verildi',
+                    4 => 'Sipariş Teslim Edildi',
                     default => 'Bilinmeyen Durum'
                 };
                 $stateImage = match($state) {
         1 => 'images/ordertaken.png',
         2 => 'images/processing.png',
         3 => 'images/cargo.png',
+        4 => 'images/delivered.png',
         default => 'images/bilinmeyen.png'
     }; 
             @endphp

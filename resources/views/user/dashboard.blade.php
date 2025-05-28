@@ -11,9 +11,16 @@
         <a href="{{ route('user.profile') }}">
             <img src="{{ asset('images/user.png') }}" class="nav-icon" alt="Profil İkonu">
         </a>
-        <span>Hoş geldiniz, {{ Auth::user()->name }}</span>
+        <span>Hoş geldiniz, {{ optional(Auth::user())->name ?? 'Ziyaretçi' }}</span>
+
     </div>
+   
     <div class="navbar-right">
+         @guest
+        <!-- Kullanıcı giriş yapmamışsa göster -->
+        <a href="{{ route('login') }}">Giriş Yap</a>
+    @endguest
+ @Auth
         <a href="{{ route('user.orders') }}"><img src="{{ asset('images/orders.png') }}" class="nav-icon" alt="Siparişlerim İkonu">Siparişlerim</a>
         <a href="{{ route('user.cart') }}"><img src="{{ asset('images/cart.png') }}" class="nav-icon" alt="Sepet İkonu">Sepet</a>
 
@@ -28,6 +35,7 @@
 </a>
 
     </div>
+    @endAuth
 </nav>
 
 <h2>Satışta Olan Kitaplar</h2>
