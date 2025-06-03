@@ -67,7 +67,11 @@ body {
     object-fit: contain;
     vertical-align: middle;
 }
-
+.logo {
+    width: 150px;
+    height: auto;
+    object-fit: contain;
+}
 
 /* İçerik Alanı */
 .content {
@@ -153,20 +157,20 @@ body {
 
 /* Güncelle butonu */
 .btn-update {
-    background-color: #A4B465;
+    background-color: #4CAF50;
 }
 
 .btn-update:hover {
-    background-color: #8a9a4f;
+    background-color:#3e8e41;
 }
 
 /* Sil butonu */
 .btn-delete {
-    background-color: #F0BB78;
+    background-color:#e74c3c;
 }
 
 .btn-delete:hover {
-    background-color: #d4a45a;
+    background-color: #c0392b;
 }
 
 /* Form stili */
